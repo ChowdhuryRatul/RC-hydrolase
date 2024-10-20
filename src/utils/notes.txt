@@ -1,0 +1,4 @@
+utils directory should contain
+
+shared constant variable 
+shared utitlity functions

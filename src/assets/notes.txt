@@ -1,0 +1,8 @@
+assets directory should contains
+
+static assets files
+
+such as 
+images, 
+brand logo,
+etc.

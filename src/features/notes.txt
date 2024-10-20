@@ -1,0 +1,17 @@
+features directory should contain
+
+specific features of a given main page.
+
+for example, in user's profile page, 
+
+you may have setting feature (allow user to edit), or payments, and more
+
+directory pattern:
+    src
+    |___pages
+    |   |___users
+    |       |___UserProvider.jsx (to provide user information)
+    |       |___Users.jsx (Main user page)
+    |       |___... (any additional pages)
+    |
+    |___... (other directory)
