@@ -1,4 +1,5 @@
 import React from 'react'
+import { useGlobalAppContext } from '../AppProvider'
 
 const DatabasePage = () => {
   return (
