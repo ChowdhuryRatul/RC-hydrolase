@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+// test direct commit to main for rule testing
+
 const App = () => {
   const[count, setCount] = useState(0)
   console.log(count)
