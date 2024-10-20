@@ -1,0 +1,3 @@
+lib directory should contains
+
+APIs, Authentication, Caching, etc

@@ -1,0 +1,7 @@
+components directory should contain
+
+reusable general components.
+
+such as custom search bar, custom buttons etc
+
+something that is not specific to a page or feature.

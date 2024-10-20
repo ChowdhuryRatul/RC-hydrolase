@@ -1,0 +1,4 @@
+app directory contain the main application stuff
+
+such as the main pages in the web application.
+

@@ -1,0 +1,28 @@
+pages directory should contain 
+(sometimes this directory can also known as feature)
+
+Provider, Page specific layouts for the MAIN PAGE.
+
+Main page meaning could be something like home page, user's profile page, etc.
+
+(main difference between Pages and Features is Pages are the main page, and Features are the stuff you can do in that page.)
+
+directory pattern:
+    src
+    |___pages
+    |   |___users
+    |       |___UserProvider.jsx (to provide user information)
+    |       |___Users.jsx (Main user page)
+    |       |___... (any additional pages)
+    |
+    |___feature
+    |   |___users (within users directory, we know the feature underneath is used for User page)
+    |       |___setting
+    |       |   |___SettingProvider.jsx (to get default settings of the user)
+    |       |   |___Setting.jsx (the main setting feature)
+    |       |
+    |       |___payment
+    |           |___PaymentProvider.jsx (to get default payment information of the user)
+    |           |___Payment.jsx (the main payment feature)
+    |
+    |___... (other directory)
