@@ -1,0 +1,7 @@
+Directory: kebab-case (Kebab case)
+
+Files: camelCase (Camel case)
+
+React component: PascalCase (Pascal case)
+
+JS variable and function: camelCase (Camel case)
