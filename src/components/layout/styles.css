@@ -1,0 +1,7 @@
+.topnav--brand:hover {
+  opacity: 80%;
+  transition: all 0.3s ease;
+}
+.topnav--brand {
+  transition: all 0.3s ease;
+}

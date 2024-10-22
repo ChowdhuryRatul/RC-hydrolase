@@ -1,6 +1,9 @@
 import React from "react";
-import { Divider, Layout, Menu } from "antd";
-import { Outlet } from "react-router-dom";
+import { Avatar, Divider, Flex, Layout, Menu } from "antd";
+import { Link, Outlet } from "react-router-dom";
+import RCHydrolaseLogo from "../../assets/RCHydrolase_logo.png";
+
+import "./styles.css";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -20,11 +23,21 @@ const RootLayout = () => {
           alignItems: "center",
         }}
       >
-        <div style={{ color: "white" }}>RC-Hydrolase</div>
+        <Link to={"/"}>
+          <Flex
+            style={{ color: "white" }}
+            gap={10}
+            justify="center"
+            align="center"
+          >
+            <Avatar src={RCHydrolaseLogo} />
+            <div className="topnav--brand">RC-Hydrolase</div>
+          </Flex>
+        </Link>
       </Header>
       <Content
         style={{
-          padding: '24px 48px',
+          padding: "24px 48px",
         }}
       >
         <Outlet />
@@ -34,9 +47,7 @@ const RootLayout = () => {
           textAlign: "center",
         }}
       >
-        <Divider style={{borderColor: "lightgray", }}>
-          
-        </Divider>
+        <Divider style={{ borderColor: "lightgray" }}></Divider>
         RC-Hydrolase ©{new Date().getFullYear()} Developed by{" "}
         <a
           href="https://chowdhurylab.github.io/"
