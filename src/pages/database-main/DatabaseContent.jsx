@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Divider, Flex, Input, Select } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
 import PieChart from "../../components/plots/PieChart";
 import TablePlot from "../../components/plots/TablePlot";
@@ -70,9 +70,16 @@ const sideMenu = sideMenuItems.map((key) => ({
   label: `Sider ${key}`,
 }));
 
+const initialSearchData = sideMenuItems.map((e) => ({
+  value: samplePdbId[e],
+  label: samplePdbId[e],
+}));
+
 const DatabaseContent = () => {
   const [selectedKey, setSelectedKey] = useState(sideMenuItems[0]);
 
+  const [searchData, setSearchData] = useState(initialSearchData);
+  const navigate = useNavigate();
   return (
     <>
       <Select
@@ -80,9 +87,23 @@ const DatabaseContent = () => {
           width: "100%",
           marginBottom: "12px",
         }}
-        placeholder={"To be implemented by Curwen, Search for protein in database..."}
+        placeholder={
+          "To be implemented by Curwen, Search for protein in database..."
+        }
         showSearch
         suffixIcon={<SearchOutlined />}
+        // filterOption={false}
+        onSearch={() => {
+          console.log("Implement custom search filter function");
+        }}
+        onSelect={(item) => {
+          navigate("pdb/" + item);
+        }}
+        // below are all for testing purposes
+        optionFilterProp="label"
+        // onClick={() => {console.log("click")}}
+
+        options={searchData}
       />
 
       <ContentSiderLayout
@@ -90,16 +111,6 @@ const DatabaseContent = () => {
         items={sideMenu}
         onClick={(menuObject) => setSelectedKey(menuObject.key)}
       >
-        <div style={{ backgroundColor: "#fff0ad" }}>
-          Yellow highlighted region are for testing purposes only <br />
-          Sider selected: {selectedKey}
-          <div>
-            click for sample navigtion to RC-Hydrolase Protein page (page 2):{" "}
-            <Link to={`pdb/${samplePdbId[selectedKey]}`}>
-              {samplePdbId[selectedKey]}
-            </Link>
-          </div>
-        </div>
         <Flex vertical={true} justify="center" align="center">
           <div style={{ width: "60%", aspectRatio: "1/1" }}>
             <PieChart data={sampleData[selectedKey]} />
