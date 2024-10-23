@@ -13,7 +13,7 @@ const ContentSiderLayout = ({
     <Layout
       style={{
         padding: "24px 0",
-        minHeight: "320px",
+        minHeight: "100%",
       }}
     >
       {items && (

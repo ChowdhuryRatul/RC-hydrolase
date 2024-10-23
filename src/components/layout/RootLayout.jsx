@@ -21,7 +21,7 @@ const RootLayout = () => {
         style={{
           display: "flex",
           alignItems: "center",
-          padding: "0px 72px",
+          padding: "0px 48px",
         }}
       >
         <Link to={"/"}>
@@ -39,17 +39,27 @@ const RootLayout = () => {
       </Header>
       <Content
         style={{
-          padding: "24px 72px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <Outlet />
+        <div
+          style={{
+            padding: "0px 48px",
+            maxWidth: "1260px",
+            flex: 1,
+          }}
+        >
+          <Outlet />
+        </div>
       </Content>
       <Footer
         style={{
           textAlign: "center",
+          // backgroundColor: "#f0f0f0",
         }}
       >
-        <Divider style={{ borderColor: "lightgray" }}></Divider>
+        {/* <Divider /> */}
         RC-Hydrolase ©{new Date().getFullYear()} Developed by{" "}
         <a
           href="https://chowdhurylab.github.io/"

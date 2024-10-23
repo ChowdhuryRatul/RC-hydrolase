@@ -21,7 +21,23 @@ import { ConfigProvider } from "antd";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ConfigProvider>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontSize: 16,
+          },
+
+          components: {
+            Layout: {
+              colorBgLayout: "white",
+            },
+            Menu: {
+            colorItemBg: '#f0f0f0', // colorBgBase -3% lightness
+            colorSubItemBg: '#121A21' // colorBgBase -6% lightness
+            },
+          },
+        }}
+      >
         <App />
       </ConfigProvider>
     </BrowserRouter>
