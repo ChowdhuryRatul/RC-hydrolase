@@ -4,7 +4,7 @@ import { useDatabaseContext } from "./DatabaseProvider";
 import RootLayout from "../../components/layout/RootLayout";
 import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
 import { Link } from "react-router-dom";
-import { Divider } from "antd";
+import { Input, Divider } from "antd";
 
 // items are placeholder
 const sideMenuItems = ["1", "2", "3"];
@@ -20,13 +20,31 @@ const sideMenu = sideMenuItems.map((key) => ({
   label: `Sider ${key}`,
 }));
 
+const arrayTemp = ["A", "B", "C"];
 const DatabaseContent = () => {
   const [selectedKey, setSelectedKey] = useState(sideMenuItems[0]);
+  const [searchValue, setSearchValue] = useState("");
+  const filteredResults = arrayTemp.filter((value) => 
+    value.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   return (
     <>
       <div>
-        Full lenegth Search Bar here (fit the whole width, TODO: Curwen)
+        <Input 
+        type="text"
+        value = {searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Search: Enter four-letter PDB..."
+        style={{ width: "100%", marginBottom: "16px" }}
+        />
+      {searchValue && (
+        <ul>
+          {filteredResults.map((value, index) => (
+            <li key={index}>{value}</li>
+          ))}
+        </ul>
+      )}
       </div>
       <ContentSiderLayout
         defaultSelectedKeys={selectedKey}
