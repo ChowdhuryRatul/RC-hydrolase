@@ -1,8 +1,11 @@
+import { Avatar, Divider, Flex, Layout } from "antd";
 import React from "react";
-import { Divider, Layout, Menu } from "antd";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import RCHydrolaseLogo from "../../assets/RCHydrolase_logo.png";
 
-const { Header, Content, Footer, Sider } = Layout;
+import "./styles.css";
+
+const { Header, Content, Footer } = Layout;
 
 const items2 = ["data filter 1", "data filter 2", "data filter 3"].map(
   (key) => ({
@@ -18,25 +21,45 @@ const RootLayout = () => {
         style={{
           display: "flex",
           alignItems: "center",
+          padding: "0px 48px",
+          boxShadow: " 0px 1px 2px rgb(0,0,0,0.5)",
         }}
       >
-        <div style={{ color: "white" }}>RC-Hydrolase</div>
+        <Link to={"/"}>
+          <Flex
+            style={{ color: "black" }}
+            gap={10}
+            justify="center"
+            align="center"
+            className="topnav--brand"
+          >
+            <Avatar src={RCHydrolaseLogo} />
+            <div className="topnav--brand-text">RC-Hydrolase</div>
+          </Flex>
+        </Link>
       </Header>
       <Content
         style={{
-          padding: '24px 48px',
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <Outlet />
+        <div
+          style={{
+            padding: "12px 48px",
+            maxWidth: "1260px",
+            flex: 1,
+          }}
+        >
+          <Outlet />
+        </div>
       </Content>
       <Footer
         style={{
           textAlign: "center",
         }}
       >
-        <Divider style={{borderColor: "lightgray", }}>
-          
-        </Divider>
+        {/* <Divider /> */}
         RC-Hydrolase ©{new Date().getFullYear()} Developed by{" "}
         <a
           href="https://chowdhurylab.github.io/"

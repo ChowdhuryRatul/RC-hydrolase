@@ -1,5 +1,5 @@
-import React from "react";
 import { Layout, Menu } from "antd";
+import React from "react";
 
 const { Content, Sider } = Layout;
 
@@ -12,19 +12,20 @@ const ContentSiderLayout = ({
   return (
     <Layout
       style={{
-        padding: "24px 0",
-        minHeight: "320px",
+        // position: "relative",
+        // minHeight: "100%",
       }}
     >
       {items && (
-        <Sider width={200}>
+        <Sider width={200}
+        style={{
+          borderRight: "1px solid rgb(0,0,0,0.3)"
+        }}
+        >
           <Menu
             mode="inline"
             defaultSelectedKeys={[defaultSelectedKeys]}
             // defaultOpenKeys={["sub1"]} // <-- this is for menu with dropdown
-            style={{
-              height: "100%",
-            }}
             items={items}
             onClick={onClick}
           />

@@ -13,7 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import "normalize.css";
 
 // we set out own global css
-import "./global.css"
+import "./global.css";
 
 // Set up antdesign configuration (if a theme color change is needed)
 import { ConfigProvider } from "antd";
@@ -21,7 +21,26 @@ import { ConfigProvider } from "antd";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ConfigProvider>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontSize: 16,
+          },
+
+          components: {
+            Layout: {
+              colorBgLayout: "white",
+              siderBg: "white",
+              headerBg: "white",
+              footerBg: "#fafafa"
+            },
+            Menu: {
+            //   itemBg: '#fafafa', // colorBgBase -3% lightness
+            // subItemBg: '#121A21' // colorBgBase -6% lightness
+            },
+          },
+        }}
+      >
         <App />
       </ConfigProvider>
     </BrowserRouter>
