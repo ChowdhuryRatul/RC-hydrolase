@@ -22,11 +22,12 @@ const RootLayout = () => {
           display: "flex",
           alignItems: "center",
           padding: "0px 48px",
+          boxShadow: " 0px 1px 2px rgb(0,0,0,0.5)",
         }}
       >
         <Link to={"/"}>
           <Flex
-            style={{ color: "white" }}
+            style={{ color: "black" }}
             gap={10}
             justify="center"
             align="center"
@@ -45,7 +46,7 @@ const RootLayout = () => {
       >
         <div
           style={{
-            padding: "0px 48px",
+            padding: "12px 48px",
             maxWidth: "1260px",
             flex: 1,
           }}
@@ -56,7 +57,6 @@ const RootLayout = () => {
       <Footer
         style={{
           textAlign: "center",
-          // backgroundColor: "#f0f0f0",
         }}
       >
         {/* <Divider /> */}

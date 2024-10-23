@@ -28,7 +28,7 @@ const defaultData = [
   },
 ];
 
-const TablePlot = ({ data, onChange }) => {
+const TablePlot = ({ data }) => {
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
 

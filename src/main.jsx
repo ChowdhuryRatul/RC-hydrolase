@@ -30,10 +30,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           components: {
             Layout: {
               colorBgLayout: "white",
+              siderBg: "white",
+              headerBg: "white",
+              footerBg: "#fafafa"
             },
             Menu: {
-            colorItemBg: '#f0f0f0', // colorBgBase -3% lightness
-            colorSubItemBg: '#121A21' // colorBgBase -6% lightness
+            //   itemBg: '#fafafa', // colorBgBase -3% lightness
+            // subItemBg: '#121A21' // colorBgBase -6% lightness
             },
           },
         }}

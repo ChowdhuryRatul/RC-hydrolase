@@ -22,7 +22,7 @@ const ProteinContent = () => {
         </div>
       ) : !pdbIdStructure ? (
         <Flex style={{ height: "100%" }} justify="center" align="center">
-          <Empty  description= {"No protein of pdbid found"}/>
+          <Empty  description= {"No protein of pdb id found"}/>
         </Flex>
       ) : (
         <>
