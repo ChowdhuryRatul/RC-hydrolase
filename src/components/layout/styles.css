@@ -1,0 +1,10 @@
+.topnav--brand-text:hover {
+  opacity: 80%;
+  transition: all 0.3s ease;
+}
+.topnav--brand-text {
+  transition: all 0.3s ease;
+}
+.topnav--brand:hover {
+  cursor: pointer;
+}

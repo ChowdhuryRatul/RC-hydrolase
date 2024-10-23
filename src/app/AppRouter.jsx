@@ -2,9 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // import 3 pages
+import ClusterDataPage from "./pages/ClusterDataPage";
 import DatabasePage from "./pages/DatabasePage";
 import ProteinIdPage from "./pages/ProteinIdPage";
-import ClusterDataPage from "./pages/ClusterDataPage";
 
 // we also want to create a basic not found page for
 // and redirect it so unknown url.
@@ -23,9 +23,11 @@ const AppRouter = () => {
         <Route path="/" element={<DatabasePage />} />
 
         {/* The Protein ID and it's cluster page */}
-        <Route path="/:pdbId">
-          <Route index element={<ProteinIdPage />} />
-          <Route path=":clusterId" element={<ClusterDataPage />} />
+        <Route path="/pdb">
+          <Route path=":pdbId">
+            <Route index element={<ProteinIdPage />} />
+            <Route path=":clusterId" element={<ClusterDataPage />} />
+          </Route>
         </Route>
 
         {/* Not Found Page*/}

@@ -1,14 +1,16 @@
-import React from 'react'
+import React from "react";
 import { useParams } from "react-router-dom";
+import ProteinContent from "../../pages/protein/ProteinContent";
+import ProteinProvider from "../../pages/protein/ProteinProvider";
 
 const ProteinIdPage = () => {
-  const {pdbId} = useParams()
+  const { pdbId } = useParams();
 
   return (
-    <div>ProteinIdPage for
-      <div>Pdb Id: {pdbId}</div>
-    </div>
-  )
-}
+    <ProteinProvider pdbId={pdbId}>
+      <ProteinContent />
+    </ProteinProvider>
+  );
+};
 
-export default ProteinIdPage
+export default ProteinIdPage;

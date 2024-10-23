@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useDatabaseContext } from "./DatabaseProvider";
 
-import RootLayout from "../../components/layout/RootLayout";
-import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
-import { Link } from "react-router-dom";
 import { Divider } from "antd";
+import { Link } from "react-router-dom";
+import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
 
 // items are placeholder
 const sideMenuItems = ["1", "2", "3"];
@@ -54,7 +52,7 @@ const DatabaseContent = () => {
           </div>
           <div>
             click for sample navigtion to RC-Hydrolase Protein page (page 2):{" "}
-            <Link to={`/${samplePdbId[selectedKey]}`}>
+            <Link to={`pdb/${samplePdbId[selectedKey]}`}>
               {samplePdbId[selectedKey]}
             </Link>
           </div>
