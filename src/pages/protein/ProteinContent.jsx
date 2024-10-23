@@ -4,10 +4,12 @@ import { useProteinContext } from "./ProteinProvider";
 // to visualize protein structure (similar to Jmol)
 import * as ThreeDmol from "3dmol/build/3Dmol.js";
 
-import { Button, Flex } from "antd";
+import { Button, Flex, Spin } from "antd";
 import Protein3DMol from "./Protein3DMol";
 import "./styles.css";
 import { pdbListItem } from "./utils";
+
+import { Empty } from "antd";
 
 const ProteinContent = () => {
   const { pdbId, isLoading, pdbIdStructure, pdbIdInfo } = useProteinContext();
@@ -15,12 +17,14 @@ const ProteinContent = () => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
-      ) : !pdbIdStructure ? 
-      (
-        <div>Pdb id not found</div>
-      )
-      : (
+        <div>
+          <Spin tip="Loading protein..." spinning={isLoading} fullscreen />
+        </div>
+      ) : !pdbIdStructure ? (
+        <Flex style={{ height: "100%" }} justify="center" align="center">
+          <Empty  description= {"No protein of pdb id found"}/>
+        </Flex>
+      ) : (
         <>
           <h1>
             <a

@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { customMouseEvent, getPdbIdInfo } from "./utils";
 
 import { parseCif } from "crystcif-parse";
-import { useNavigate } from "react-router-dom";
 
 const proteinContext = createContext(null);
 

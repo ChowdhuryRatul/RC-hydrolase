@@ -17,9 +17,7 @@ const Protein3DMol = ({
   useEffect(() => {
     if (proteinRef.current) {
       let config = {
-        backgroundColor: "white",
-        lowerZoomLimit: 200,
-        upperZoomLimit: 400,
+        backgroundColor: "#f0f0f0",
         disableFog: true,
       };
       const viewer = ThreeDmol.createViewer(proteinRef.current, config);
@@ -31,7 +29,6 @@ const Protein3DMol = ({
         viewer.addSurface(...surfaceStyle);
       }
 
-      viewer.setBackgroundColor("white");
       viewer.zoomTo();
       viewer.render();
     }
