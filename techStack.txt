@@ -1,0 +1,26 @@
+build tool:
+    vite
+
+framework:
+    React
+
+component library:
+    Antd
+    https://ant.design/
+
+plotting:
+    antv G2
+    https://www.npmjs.com/package/@ant-design/plots
+
+routing:
+    react router (specifically react-router-dom)
+    https://www.npmjs.com/package/react-router-dom
+
+cif parser:
+    crystcif-parse
+    https://www.npmjs.com/package/crystcif-parse
+
+protein visualization:
+    3dmol
+    https://www.npmjs.com/package/3dmol
+
