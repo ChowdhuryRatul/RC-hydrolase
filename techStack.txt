@@ -9,8 +9,10 @@ component library:
     https://ant.design/
 
 plotting:
-    antv G2
+    antv G2 (flaky, buggy)
     https://www.npmjs.com/package/@ant-design/plots
+
+    use Chart js
 
 routing:
     react router (specifically react-router-dom)

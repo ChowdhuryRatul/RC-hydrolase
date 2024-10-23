@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
-import { Divider } from "antd";
+import { Divider, Flex } from "antd";
 import { Link } from "react-router-dom";
 import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
+import PieChart from "../../components/plots/PieChart";
+import TablePlot from "../../components/plots/TablePlot";
 
 // items are placeholder
 const sideMenuItems = ["1", "2", "3"];
@@ -31,25 +33,18 @@ const DatabaseContent = () => {
         items={sideMenu}
         onClick={(menuObject) => setSelectedKey(menuObject.key)}
       >
-        deliverables
-        <div>
-          pie chart <br />
-          table
-        </div>
+        <Flex vertical={true} justify="center" align="center">
+          <div style={{ width: "60%", aspectRatio: "1/1" }}>
+            <PieChart />
+          </div>
+          <div style={{ width: "100%" }}>
+            <TablePlot />
+          </div>
+        </Flex>
         <Divider />
         <div>
           Currently under testing for navigation <br />
-          Database Content: {selectedKey}
-          <div>
-            click for sample navigtion to RCSB website:{" "}
-            <a
-              href={`https://www.rcsb.org/structure/${samplePdbId[selectedKey]}`}
-              target="_blank"
-              rel="noopener"
-            >
-              {samplePdbId[selectedKey]}
-            </a>
-          </div>
+          Sider selected: {selectedKey}
           <div>
             click for sample navigtion to RC-Hydrolase Protein page (page 2):{" "}
             <Link to={`pdb/${samplePdbId[selectedKey]}`}>
