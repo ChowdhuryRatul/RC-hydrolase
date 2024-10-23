@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import ProteinProvider from "../../pages/protein/ProteinProvider";
 import ProteinContent from "../../pages/protein/ProteinContent";
+import ProteinProvider from "../../pages/protein/ProteinProvider";
 
 const ProteinIdPage = () => {
   const { pdbId } = useParams();

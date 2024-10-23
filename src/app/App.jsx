@@ -1,7 +1,7 @@
 import React from "react";
+import ScrollToTop from "../components/navigation/ScrollToTop";
 import AppProvider from "./AppProvider";
 import AppRouter from "./AppRouter";
-import ScrollToTop from "../components/navigation/ScrollToTop";
 
 const App = () => {
   return (

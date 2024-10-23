@@ -13,7 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import "normalize.css";
 
 // we set out own global css
-import "./global.css"
+import "./global.css";
 
 // Set up antdesign configuration (if a theme color change is needed)
 import { ConfigProvider } from "antd";

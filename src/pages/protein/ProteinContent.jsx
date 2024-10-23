@@ -1,13 +1,121 @@
-import React from 'react'
-import { useProteinContext } from './ProteinProvider'
+import React from "react";
+import { useProteinContext } from "./ProteinProvider";
+
+// to visualize protein structure (similar to Jmol)
+import * as ThreeDmol from "3dmol/build/3Dmol.js";
+
+import { Button, Flex } from "antd";
+import Protein3DMol from "./Protein3DMol";
+import "./styles.css";
+import { pdbListItem } from "./utils";
 
 const ProteinContent = () => {
-
-  const {pdbId} = useProteinContext()
+  const { pdbId, isLoading, pdbIdStructure, pdbIdInfo } = useProteinContext();
 
   return (
-    <div>ProteinContent: pdbId</div>
-  )
-}
+    <>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : !pdbIdStructure ? 
+      (
+        <div>Pdb id not found</div>
+      )
+      : (
+        <>
+          <h1>
+            <a
+              href={`https://www.rcsb.org/structure/${pdbId}`}
+              target="_blank"
+              rel="noopener"
+            >
+              {pdbId}
+            </a>
+          </h1>
+          <ul style={{ listStyleType: "none" }}>
+            {pdbListItem
+              .filter((e) => pdbIdInfo[e.prop])
+              .map((e, i) => {
+                const key = e.prop + i.toString();
+                return (
+                  <li key={key}>
+                    <span style={{ fontWeight: "bold" }}>{e.text}</span>:{" "}
+                    {pdbIdInfo[e.prop]}
+                  </li>
+                );
+              })}
+          </ul>
+          <Flex justify="center" align="center" gap={24}>
+            <Button
+              onClick={() => {
+                console.log("To be implement");
+              }}
+            >
+              Cluster 60%
+            </Button>
+            <Button
+              onClick={() => {
+                console.log("To be implement");
+              }}
+            >
+              Cluster 70%
+            </Button>
+            <Button
+              onClick={() => {
+                console.log("To be implement");
+              }}
+            >
+              Cluster 80%
+            </Button>
+            <Button
+              onClick={() => {
+                console.log("To be implement");
+              }}
+            >
+              Cluster 90%
+            </Button>
+          </Flex>
+          <div
+            style={{
+              marginTop: "12px",
+              marginBottom: "12px",
+              textAlign: "center",
+            }}
+          >
+            Protein Sequence
+          </div>
+          <Flex
+            style={{ width: "80%", margin: "auto" }}
+            justify="center"
+            align="center"
+            gap={48}
+            flex={1}
+          >
+            <Protein3DMol
+              className={"protein-viewer"}
+              pdbIdStructure={pdbIdStructure}
+              style={{ width: "55%", aspectRatio: "1/1", flex: 3 }}
+              viewStyle={[{}, { cartoon: { color: "spectrum" } }]}
+              surfaceStyle={null}
+            />
 
-export default ProteinContent
+            <Protein3DMol
+              className={"protein-viewer"}
+              pdbIdStructure={pdbIdStructure}
+              style={{ width: "55%", aspectRatio: "1/1", flex: 2 }}
+              viewStyle={[{}, { stick: { radius: 0.2, color: "gray" } }]}
+              surfaceStyle={[
+                ThreeDmol.SurfaceType.MS,
+                {
+                  opacity: 1,
+                  color: "red",
+                },
+              ]}
+            />
+          </Flex>
+        </>
+      )}
+    </>
+  );
+};
+
+export default ProteinContent;
