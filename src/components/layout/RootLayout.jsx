@@ -33,7 +33,7 @@ const RootLayout = () => {
             align="center"
             className="topnav--brand"
           >
-            <Avatar src={RCHydrolaseLogo} />
+            <Avatar shape="square" size={64}  src={RCHydrolaseLogo} />
             <div className="topnav--brand-text">RC-Hydrolase</div>
           </Flex>
         </Link>
