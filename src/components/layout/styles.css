@@ -1,10 +1,16 @@
-.topnav--brand-text:hover {
-  opacity: 80%;
+/* .topnav--brand-text:hover {
+  opacity: 60%;
   transition: all 0.3s ease;
-}
+} */
 .topnav--brand-text {
+  font-size: 1.25rem;
+  /* transition: all 0.3s ease; */
+}
+.topnav--brand {
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 .topnav--brand:hover {
-  cursor: pointer;
+  opacity: 80%;
+  transition: all 0.3s ease;
 }

@@ -7,7 +7,7 @@ const ProteinIdPage = () => {
   const { pdbId } = useParams();
 
   return (
-    <ProteinProvider pdbId={pdbId}>
+    <ProteinProvider pdbId={pdbId.toUpperCase()}>
       <ProteinContent />
     </ProteinProvider>
   );

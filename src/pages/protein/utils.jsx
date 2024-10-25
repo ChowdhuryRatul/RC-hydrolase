@@ -91,6 +91,7 @@ export const customMouseEvent = () => {
 };
 
 const getValue = (element) => {
+  // console.log(element)
   return element
     ? element.value.constructor === Array
       ? element.value
@@ -101,30 +102,43 @@ const getValue = (element) => {
     : null;
 };
 
-export const getPdbIdInfo = (cifData, pdbId) => {
+export const getPdbIdInfo = (cifData) => {
+  if (
+    !cifData ||
+    Object.keys(cifData).length > 1 ||
+    Object.keys(cifData).length == 0
+  )
+    return {};
+
+  const key = Object.keys(cifData)[0];
+
   // Access parsed data
   return {
-    doi: getValue(cifData[pdbId]["_database_2.pdbx_DOI"]),
+    doi: getValue(cifData[key]["_database_2.pdbx_DOI"]),
 
-    classification: getValue(cifData[pdbId]["_struct_keywords.pdbx_keywords"]),
+    classification: getValue(cifData[key]["_struct_keywords.pdbx_keywords"]),
 
     organisms: getValue(
-      cifData[pdbId]["_entity_src_gen.pdbx_gene_src_scientific_name"]
+      cifData[key]["_entity_src_gen.pdbx_gene_src_scientific_name"]
     ),
 
     expressionSystem: getValue(
-      cifData[pdbId]["_entity_src_gen.pdbx_host_org_scientific_name"]
+      cifData[key]["_entity_src_gen.pdbx_host_org_scientific_name"]
     ),
 
-    authors: getValue(cifData[pdbId]["_audit_author.name"]),
+    authors: getValue(cifData[key]["_audit_author.name"]),
 
     deposited: getValue(
-      cifData[pdbId]["_pdbx_database_status.recvd_initial_deposition_date"]
+      cifData[key]["_pdbx_database_status.recvd_initial_deposition_date"]
     ),
 
     released: getValue(
-      cifData[pdbId]["_pdbx_audit_revision_history.revision_date"]
-    ).split(", ")[0],
+      cifData[key]["_pdbx_audit_revision_history.revision_date"]
+    )
+      ? getValue(
+          cifData[key]["_pdbx_audit_revision_history.revision_date"]
+        ).split(", ")[0]
+      : null,
   };
 };
 
@@ -161,3 +175,31 @@ export const pdbListItem = [
     prop: "released",
   },
 ];
+
+
+// Load 3 information 
+export function getPortionsByPdbId(pdbs, pdbId){
+  const list = []
+
+  pdbs.forEach((e) => {
+    if (e.toUpperCase().includes(pdbId.toUpperCase())) {
+      list.push(e)
+    }
+  })
+
+  if (list.length > 1) {
+    console.error("Warning: found multiple reactive center with the same pdb.")
+  }
+  if (list.length == 0) {
+    return null
+  }
+
+  const name = list[0].replace(".pdb", "")
+  const portion = name.split("_")
+  return {
+    ligand: portion[1],
+    ecClass: portion[3],
+    organism: portion[4],
+  }
+
+}

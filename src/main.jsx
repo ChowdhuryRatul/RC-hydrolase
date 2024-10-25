@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         theme={{
           token: {
             fontSize: 16,
+            fontFamily: "Arial"
           },
 
           components: {
