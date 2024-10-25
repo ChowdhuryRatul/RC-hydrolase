@@ -78,9 +78,6 @@ const initialSearchData = sideMenuItems.map((e) => ({
 const DatabaseContent = () => {
   const [selectedKey, setSelectedKey] = useState(sideMenuItems[0]);
   const [searchValue, setSearchValue] = useState("");
-  const filteredResults = arrayTemp.filter((value) => 
-    value.toLowerCase().includes(searchValue.toLowerCase())
-  );
 
   const [searchData, setSearchData] = useState(initialSearchData);
   const navigate = useNavigate();
