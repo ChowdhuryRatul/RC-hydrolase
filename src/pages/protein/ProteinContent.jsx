@@ -13,8 +13,15 @@ import { Empty } from "antd";
 import { useGlobalAppContext } from "../../app/AppProvider";
 
 const ProteinContent = () => {
-  const { pdbId, isLoading, pdbIdStructure, pdbIdInfo, information, reactivePdb } = useProteinContext();
-
+  const {
+    pdbId,
+    isLoading,
+    pdbIdStructure,
+    pdbIdInfo,
+    information,
+    reactivePdb,
+    sequence,
+  } = useProteinContext();
   return (
     <>
       {isLoading ? (
@@ -89,9 +96,24 @@ const ProteinContent = () => {
               marginTop: "12px",
               marginBottom: "12px",
               textAlign: "center",
+              wordBreak: "break-word",
             }}
           >
-            Protein Sequence
+            {sequence && (
+              <>
+                {sequence
+                  .split("|")
+                  .filter((e) => e != "")
+                  .map((e, i) => {
+                    const key = e + i.toString();
+                    if (e === e.toUpperCase()) {
+                      return <span key={key}>{e}</span>;
+                    } else {
+                      return <span key={key} style={{backgroundColor: "Yellow", fontWeight: "bold"}}>{e.toUpperCase()}</span>;
+                    }
+                  })}
+              </>
+            )}
           </div>
           <Flex
             style={{ width: "80%", margin: "auto" }}

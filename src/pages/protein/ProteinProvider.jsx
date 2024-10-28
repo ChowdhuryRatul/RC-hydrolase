@@ -16,6 +16,7 @@ const ProteinProvider = ({ children, pdbId }) => {
   const [pdbIdInfo, setPdbIdInfo] = useState({});
   const [information, setInformation] = useState(null);
   const [reactivePdb, setReactivePdb] = useState(null);
+  const [sequence, setSequence] = useState(null);
 
   useEffect(() => {
     customMouseEvent(); // <-- remove 3dMol zoom functionality
@@ -76,6 +77,21 @@ _struct_asym.id`)[0]
         .catch((err) => null);
       setReactivePdb(reactiveData.data);
 
+      // get sequence
+      const sequenceData = await fetch(
+        "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
+          name +
+          ".pdb"
+      )
+        .then((res) => {
+          if (res.status >= 300) {
+            return null;
+          }
+          return res.json();
+        })
+        .catch((err) => null);
+      setSequence(sequenceData.data);
+
       setIsLoading(false);
     };
 
@@ -89,6 +105,7 @@ _struct_asym.id`)[0]
     pdbIdInfo,
     information,
     reactivePdb,
+    sequence,
   };
   return (
     <proteinContext.Provider value={value}>{children}</proteinContext.Provider>
