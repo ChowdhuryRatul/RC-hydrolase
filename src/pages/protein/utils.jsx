@@ -195,11 +195,7 @@ export function getPortionsByPdbId(pdbs, pdbId){
   }
 
   const name = list[0].replace(".pdb", "")
-  const portion = name.split("_")
-  return {
-    ligand: portion[1],
-    ecClass: portion[3],
-    organism: portion[4],
-  }
+  return name
+
 
 }

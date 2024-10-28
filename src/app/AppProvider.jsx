@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { rcHydrolaseData } from "../lib/staticData";
 import { getPdbs } from "./utils";
 
 const globalAppContext = createContext(null);
@@ -21,8 +20,17 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       await wait(300);
-      setData(rcHydrolaseData);
-      setPdbs(getPdbs(rcHydrolaseData));
+      const rcData = await fetch("https://pixf-services.onrender.com/api/v1/rc-hydrolase/pairs")
+      .then((res) => {
+        if (res.status >= 300) {
+          return null;
+        }
+        return res.json();
+      })
+      .catch((err) => null);
+
+      setData(rcData.data);
+      setPdbs(getPdbs(rcData.data));
 
       setIsLoading(false);
     };
