@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 // chart js package
 import Chart from "chart.js/auto";
 
-const PieChart = ({ data }) => {
+const PieChart = ({ data, title }) => {
   const canvasRef = useRef();
 
   useEffect(() => {
@@ -57,8 +57,16 @@ const PieChart = ({ data }) => {
     const options = {
       plugins: {
         legend: {
+          display: false,
           position: "right",
         },
+        title: {
+          display: true,
+          text: title + " type distrubution",
+          font: {
+            size: 26
+          }
+        }
       },
     };
 

@@ -22,7 +22,6 @@ const ProteinProvider = ({ children, pdbId }) => {
         })
         .catch((err) => null);
       setPdbIdStructure(pdbData);
-      // console.log(pdbData)
 
       const pdbInfo = await fetch(`https://files.rcsb.org/view/${pdbId}.cif`)
         .then((res) => {
@@ -37,11 +36,12 @@ const ProteinProvider = ({ children, pdbId }) => {
       if (pdbData && pdbInfo) {
         // we split the text because some are so long that it took more than a minute to parse
         const cifData = parseCif(
-          pdbInfo.split(`# 
+          pdbInfo
+          .split(`# 
 loop_
 _struct_asym.id`)[0]
         );
-        pdbIdInfoObj = getPdbIdInfo(cifData, pdbId);
+        pdbIdInfoObj = getPdbIdInfo(cifData);
       }
       setPdbIdInfo(pdbIdInfoObj);
 

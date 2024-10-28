@@ -1,9 +1,11 @@
 import React, { createContext, useContext } from "react";
 
+
 const databaseContext = createContext(null);
 
-const DatabaseProvider = ({children}) => {
-  const value = {};
+const DatabaseProvider = ({ children }) => {
+
+  const value = { };
 
   return (
     <databaseContext.Provider value={value}>
