@@ -73,6 +73,7 @@ const TablePlot = ({ data }) => {
       {/* <Button style={{ marginBottom: "12px" }} onClick={() => clearAll()}>
         Clear
       </Button> */}
+      <p>Total data: {data.length}</p>
       <Table
         onRow={(record, rowIndex) => {
           return {

@@ -13,16 +13,7 @@ import { Empty } from "antd";
 import { useGlobalAppContext } from "../../app/AppProvider";
 
 const ProteinContent = () => {
-  const { pdbs } = useGlobalAppContext();
-  const { pdbId, isLoading, pdbIdStructure, pdbIdInfo } = useProteinContext();
-
-  const [information, setInformation] = useState(null)
-
-  useEffect(() => {
-    if (pdbs && pdbId) {
-      setInformation(getPortionsByPdbId(pdbs, pdbId))
-    }
-  }, [pdbs])
+  const { pdbId, isLoading, pdbIdStructure, pdbIdInfo, information, reactivePdb } = useProteinContext();
 
   return (
     <>
@@ -113,7 +104,7 @@ const ProteinContent = () => {
               className={"protein-viewer"}
               pdbIdStructure={pdbIdStructure}
               style={{ width: "55%", aspectRatio: "1/1", flex: 3 }}
-              viewStyle={[{}, { cartoon: { color: "spectrum" } }]}
+              viewStyle={[{}, { cartoon: { color: "#F1BE48" } }]}
               surfaceStyle={null}
             />
 
@@ -127,9 +118,9 @@ const ProteinContent = () => {
               <h3>Reactive center</h3>
               <Protein3DMol
                 className={"protein-viewer"}
-                pdbIdStructure={pdbIdStructure}
+                pdbIdStructure={reactivePdb}
                 style={{ width: "100%", aspectRatio: "1/1" }}
-                viewStyle={[{}, { stick: { radius: 0.2, color: "gray" } }]}
+                viewStyle={[{}, { stick: { radius: 0.2, color: "#C8102E" } }]}
                 surfaceStyle={[
                   ThreeDmol.SurfaceType.MS,
                   {
