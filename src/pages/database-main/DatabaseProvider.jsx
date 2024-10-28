@@ -3,7 +3,8 @@ import React, { createContext, useContext } from "react";
 
 const databaseContext = createContext(null);
 
-const DatabaseProvider = ({ children }) => {
+const DatabaseProvider = ({ children}) => {
+
 
   const value = { };
 

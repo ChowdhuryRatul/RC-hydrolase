@@ -10,26 +10,14 @@ import { SearchOutlined } from "@ant-design/icons";
 
 import { useGlobalAppContext } from "../../app/AppProvider";
 import { getPieChartData, nameMapping } from "./utils";
+import { siderItems } from "../../lib/contants";
 
-// actual data here
-const siderItems = [
-  {
-    key: "ligand",
-    label: "Ligand",
-  },
-  {
-    key: "ecClass",
-    label: "EC Class",
-  },
-  {
-    key: "organism",
-    label: "Organism",
-  },
-];
+
 
 const DatabaseContent = () => {
   const { data, pdbs, isLoading } = useGlobalAppContext();
   const [selectedKey, setSelectedKey] = useState(siderItems[0].key);
+  
   const [searchData, setSearchData] = useState([]);
 
   useEffect(() => {
@@ -66,7 +54,7 @@ const DatabaseContent = () => {
           marginBottom: "12px",
         }}
         placeholder={
-          "To be implemented by Curwen, Search for protein in database..."
+          "Search for a protein in database..."
         }
         showSearch
         suffixIcon={<SearchOutlined />}

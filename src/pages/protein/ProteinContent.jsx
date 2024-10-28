@@ -11,6 +11,7 @@ import { getPortionsByPdbId, pdbListItem } from "./utils";
 
 import { Empty } from "antd";
 import { useGlobalAppContext } from "../../app/AppProvider";
+import { useNavigate } from "react-router-dom";
 
 const ProteinContent = () => {
   const {
@@ -22,6 +23,9 @@ const ProteinContent = () => {
     reactivePdb,
     sequence,
   } = useProteinContext();
+
+  const navigate = useNavigate()
+
   return (
     <>
       {isLoading ? (
@@ -64,28 +68,28 @@ const ProteinContent = () => {
           <Flex justify="center" align="center" gap={24}>
             <Button
               onClick={() => {
-                console.log("To be implement");
+                navigate("60");
               }}
             >
               Cluster 60%
             </Button>
             <Button
               onClick={() => {
-                console.log("To be implement");
+                navigate("70");
               }}
             >
               Cluster 70%
             </Button>
             <Button
               onClick={() => {
-                console.log("To be implement");
+                navigate("80");
               }}
             >
               Cluster 80%
             </Button>
             <Button
               onClick={() => {
-                console.log("To be implement");
+                navigate("90");
               }}
             >
               Cluster 90%
