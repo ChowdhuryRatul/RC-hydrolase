@@ -1,6 +1,4 @@
 export function getCluster(data, clusterRange, filename) {
-  console.log(clusterRange);
-
   // dataArr will contain object with propertiew below
   // target, match, score
   const temp = data.filter(

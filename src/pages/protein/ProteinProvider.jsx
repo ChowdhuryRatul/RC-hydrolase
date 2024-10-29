@@ -33,25 +33,18 @@ const ProteinProvider = ({ children, pdbId }) => {
       setPdbIdStructure(pdbData);
 
       // get pdb cif data (pdb information)
-      const pdbInfo = await fetch(`https://files.rcsb.org/view/${pdbId}.cif`)
+      const pdbInfo = await fetch(
+        `https://pixf-services.onrender.com/api/v1/rc-hydrolase/cif/${pdbId}`
+      )
         .then((res) => {
           if (res.status >= 300) {
             return null;
           }
-          return res.text();
+          return res.json();
         })
         .catch((err) => null);
 
-      let pdbIdInfoObj = {};
-      if (pdbData && pdbInfo) {
-        // we split the text because some are so long that it took more than a minute to parse
-        const cifData = parseCif(
-          pdbInfo.split(`# 
-loop_
-_struct_asym.id`)[0]
-        );
-        pdbIdInfoObj = getPdbIdInfo(cifData);
-      }
+      let pdbIdInfoObj = pdbInfo ? pdbInfo.data : null;
       setPdbIdInfo(pdbIdInfoObj);
 
       // get information from RC-Hydrolase
@@ -94,8 +87,9 @@ _struct_asym.id`)[0]
 
       setIsLoading(false);
     };
-
-    fetchPdbId();
+    if (pdbs) {
+      fetchPdbId();
+    }
   }, [pdbs]);
 
   const value = {
