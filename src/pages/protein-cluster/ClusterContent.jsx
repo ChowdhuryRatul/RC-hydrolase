@@ -1,41 +1,18 @@
-import React, { useState, useEffect } from "react";
-
-import { Divider, Flex, Input, Select, Spin } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
-import PieChart from "../../components/plots/PieChart";
-import TablePlot from "../../components/plots/TablePlot";
-
-import { SearchOutlined } from "@ant-design/icons";
-
+import React, { useEffect, useState } from "react";
 import { useGlobalAppContext } from "../../app/AppProvider";
-import { getPieChartData, nameMapping } from "../../components/plots/utils";
 import { siderItems } from "../../lib/contants";
+import { useNavigate } from "react-router-dom";
+import { Divider, Flex, Select, Spin } from "antd";
+import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
+import TablePlot from "../../components/plots/TablePlot";
+import { SearchOutlined } from "@ant-design/icons";
+import PieChart from "../../components/plots/PieChart";
+import { getPieChartData, nameMapping } from "../../components/plots/utils";
+import { useClusterContext } from "./ClusterProvider";
 
-
-
-const DatabaseContent = () => {
-  const { data, pdbs, isLoading } = useGlobalAppContext();
+const ClusterContent = () => {
+  const { clusterPdbs, isLoading, pdbId, clusterRange } = useClusterContext();
   const [selectedKey, setSelectedKey] = useState(siderItems[0].key);
-
-  const [searchData, setSearchData] = useState([]);
-
-  useEffect(() => {
-    if (pdbs) {
-      setSearchData(
-        pdbs.map((e) => ({
-          value: e.split("_")[0].toUpperCase(),
-          label: (
-            <Flex key={e} gap={6} align="center">
-              <span>{e.split("_")[0].toUpperCase()}</span>
-
-              <span style={{ color: "gray", fontSize: "12px" }}>{e}</span>
-            </Flex>
-          ),
-        }))
-      );
-    }
-  }, [isLoading]);
 
   const navigate = useNavigate();
   return (
@@ -48,15 +25,13 @@ const DatabaseContent = () => {
           fullscreen
         />
       )}
-      <h2>Full RC-Hydrolase Database</h2>
+      <h2>Dataset of {clusterRange}% with {pdbId}'s reactive center</h2>
       <Select
         style={{
           width: "100%",
           marginBottom: "12px",
         }}
-        placeholder={
-          "Search for a protein in database..."
-        }
+        placeholder={"Search for a protein in database..."}
         showSearch
         suffixIcon={<SearchOutlined />}
         // filterOption={false}
@@ -64,16 +39,15 @@ const DatabaseContent = () => {
           // console.log("Implement custom search filter function");
         }}
         onSelect={(item) => {
-          // console.log(item);
-          navigate("pdb/" + item);
+          navigate("/pdb/" + item);
         }}
         // below are all for testing purposes
         optionFilterProp="value"
         // onClick={() => {console.log("click")}}
 
         options={
-          pdbs
-            ? pdbs.map((e) => ({
+            clusterPdbs
+            ? clusterPdbs.map((e) => ({
                 value: e.split("_")[0].toUpperCase(),
                 label: (
                   <Flex key={e} gap={6} align="center">
@@ -100,9 +74,9 @@ const DatabaseContent = () => {
           gap={12}
         >
           <div style={{ width: "60%", aspectRatio: "1/1" }}>
-            {pdbs && selectedKey && (
+            {clusterPdbs && selectedKey && (
               <PieChart
-                data={getPieChartData(selectedKey, pdbs)}
+                data={getPieChartData(selectedKey, clusterPdbs)}
                 title={nameMapping[selectedKey]}
               />
             )}
@@ -111,10 +85,10 @@ const DatabaseContent = () => {
       </ContentSiderLayout>
 
       <Divider />
-      {pdbs && (
+      {clusterPdbs && (
         <div style={{ width: "100%" }}>
           <TablePlot
-            data={pdbs.map((e) => {
+            data={clusterPdbs.map((e) => {
               const name = e.replace(".pdb", "");
               const portion = name.split("_");
               return {
@@ -133,4 +107,4 @@ const DatabaseContent = () => {
   );
 };
 
-export default DatabaseContent;
+export default ClusterContent;

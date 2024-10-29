@@ -78,7 +78,7 @@ const TablePlot = ({ data }) => {
         onRow={(record, rowIndex) => {
           return {
             onClick: (event) => {
-              navigate("pdb/" + record.pdbId);
+              navigate("/pdb/" + record.pdbId);
             }, // click row
             onDoubleClick: (event) => {}, // double click row
             onContextMenu: (event) => {}, // right button click row
