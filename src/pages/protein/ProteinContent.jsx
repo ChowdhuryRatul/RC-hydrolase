@@ -7,7 +7,7 @@ import * as ThreeDmol from "3dmol/build/3Dmol.js";
 import { Button, Flex, Spin } from "antd";
 import Protein3DMol from "./Protein3DMol";
 import "./styles.css";
-import { getPortionsByPdbId, pdbListItem } from "./utils";
+import { pdbListItem } from "./utils";
 
 import { Empty } from "antd";
 import { useGlobalAppContext } from "../../app/AppProvider";

@@ -4,7 +4,7 @@ import { customMouseEvent, getPdbIdInfo } from "./utils";
 import { parseCif } from "crystcif-parse";
 
 import { useGlobalAppContext } from "../../app/AppProvider";
-import { getPortionsByPdbId, pdbListItem } from "./utils";
+import { getPdbFileByPdbId } from "../../utils/utils";
 
 const proteinContext = createContext(null);
 
@@ -55,7 +55,7 @@ _struct_asym.id`)[0]
       setPdbIdInfo(pdbIdInfoObj);
 
       // get information from RC-Hydrolase
-      const name = getPortionsByPdbId(pdbs, pdbId);
+      const name = getPdbFileByPdbId(pdbs, pdbId);
       const portion = name.split("_");
       setInformation({
         ligand: portion[1],
