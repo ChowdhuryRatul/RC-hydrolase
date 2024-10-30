@@ -4,13 +4,13 @@ import { Divider, Flex, Input, Select, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
 import PieChart from "../../components/plots/PieChart";
-import TablePlot from "../../components/plots/TablePlot";
 
 import { SearchOutlined } from "@ant-design/icons";
 
 import { useGlobalAppContext } from "../../app/AppProvider";
 import { getPieChartData, nameMapping } from "../../components/plots/utils";
 import { siderItems } from "../../lib/contants";
+import TablePlot from "../../components/table/TablePlot";
 
 
 

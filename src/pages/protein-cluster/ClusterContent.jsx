@@ -4,11 +4,11 @@ import { siderItems } from "../../lib/contants";
 import { useNavigate } from "react-router-dom";
 import { Divider, Flex, Select, Spin } from "antd";
 import ContentSiderLayout from "../../components/layout/ContentSiderLayout";
-import TablePlot from "../../components/plots/TablePlot";
 import { SearchOutlined } from "@ant-design/icons";
 import PieChart from "../../components/plots/PieChart";
 import { getPieChartData, nameMapping } from "../../components/plots/utils";
 import { useClusterContext } from "./ClusterProvider";
+import ClusterTablePlot from "../../components/table/ClusterTablePlot";
 
 const ClusterContent = () => {
   const { clusterPdbs, isLoading, pdbId, clusterRange } = useClusterContext();
@@ -25,7 +25,7 @@ const ClusterContent = () => {
           fullscreen
         />
       )}
-      <h2>Dataset of {clusterRange}% with {pdbId}'s reactive center</h2>
+      <h2>Dataset of &#8805; {clusterRange}% with {pdbId}'s reactive center</h2>
       <Select
         style={{
           width: "100%",
@@ -87,7 +87,7 @@ const ClusterContent = () => {
       <Divider />
       {clusterPdbs && (
         <div style={{ width: "100%" }}>
-          <TablePlot
+          <ClusterTablePlot
             data={clusterPdbs.map((e) => {
               const name = e.replace(".pdb", "");
               const portion = name.split("_");
@@ -98,6 +98,7 @@ const ClusterContent = () => {
                 residuePosition: portion[2],
                 ecClass: portion[3],
                 organism: portion[4],
+                score: parseFloat(portion[5]).toFixed(2),
               };
             })}
           />
