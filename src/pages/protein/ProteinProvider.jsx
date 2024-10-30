@@ -49,41 +49,43 @@ const ProteinProvider = ({ children, pdbId }) => {
 
       // get information from RC-Hydrolase
       const name = getPdbFileByPdbId(pdbs, pdbId);
-      const portion = name.split("_");
-      setInformation({
-        ligand: portion[1],
-        ecClass: portion[3],
-        organism: portion[4],
-      });
+      if (name) {
+        const portion = name.split("_");
+        setInformation({
+          ligand: portion[1],
+          ecClass: portion[3],
+          organism: portion[4],
+        });
 
-      const reactiveData = await fetch(
-        "https://pixf-services.onrender.com/api/v1/rc-hydrolase/pdbs/" +
-          name +
-          ".pdb"
-      )
-        .then((res) => {
-          if (res.status >= 300) {
-            return null;
-          }
-          return res.json();
-        })
-        .catch((err) => null);
-      setReactivePdb(reactiveData.data);
+        const reactiveData = await fetch(
+          "https://pixf-services.onrender.com/api/v1/rc-hydrolase/pdbs/" +
+            name +
+            ".pdb"
+        )
+          .then((res) => {
+            if (res.status >= 300) {
+              return null;
+            }
+            return res.json();
+          })
+          .catch((err) => null);
+        setReactivePdb(reactiveData.data);
 
-      // get sequence
-      const sequenceData = await fetch(
-        "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
-          name +
-          ".pdb"
-      )
-        .then((res) => {
-          if (res.status >= 300) {
-            return null;
-          }
-          return res.json();
-        })
-        .catch((err) => null);
-      setSequence(sequenceData.data);
+        // get sequence
+        const sequenceData = await fetch(
+          "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
+            name +
+            ".pdb"
+        )
+          .then((res) => {
+            if (res.status >= 300) {
+              return null;
+            }
+            return res.json();
+          })
+          .catch((err) => null);
+        setSequence(sequenceData.data);
+      }
 
       setIsLoading(false);
     };

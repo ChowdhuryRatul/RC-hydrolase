@@ -36,9 +36,12 @@ const ProteinContent = () => {
             fullscreen
           />
         </div>
-      ) : !pdbIdStructure ? (
-        <Flex style={{ height: "100%" }} justify="center" align="center">
+      ) : !sequence ? (
+        <Flex style={{ height: "100%" }} justify="center" align="center" vertical gap={12}>
           <Empty description={"No protein of pdb id found"} />
+          <Button type="primary" onClick={() => navigate("/")}>
+            Back Home
+          </Button>
         </Flex>
       ) : (
         <>
