@@ -4,10 +4,11 @@ import { useProteinContext } from "./ProteinProvider";
 import * as ThreeDmol from "3dmol/build/3Dmol.js";
 
 const Protein3DMol = ({
-  pdbIdStructure,
   style,
+  pdbIdStructure,
   viewStyle,
   surfaceStyle,
+  partialViewStyle,
   className,
 }) => {
   const proteinRef = useRef(null);
@@ -27,6 +28,10 @@ const Protein3DMol = ({
       }
       if (surfaceStyle) {
         viewer.addSurface(...surfaceStyle);
+      }
+
+      if (partialViewStyle) {
+        viewer.setStyle(...partialViewStyle);
       }
 
       viewer.zoomTo();
