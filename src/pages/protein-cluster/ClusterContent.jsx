@@ -31,7 +31,7 @@ const ClusterContent = () => {
           width: "100%",
           marginBottom: "12px",
         }}
-        placeholder={"Search for a protein in database..."}
+        placeholder={"Search for a protein in cluster..."}
         showSearch
         suffixIcon={<SearchOutlined />}
         // filterOption={false}
