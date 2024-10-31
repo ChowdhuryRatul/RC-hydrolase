@@ -45,7 +45,7 @@ const RootLayout = () => {
         >
           <div>(Last Updated: Oct 31, 2024)</div>
           <div>
-            created by
+            created by{" "}
             <a
               href="https://chowdhurylab.github.io/"
               target="_blank"
