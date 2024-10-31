@@ -48,7 +48,16 @@ const DatabaseContent = () => {
           fullscreen
         />
       )}
-      <h2>Full RC-Hydrolase Database</h2>
+      <h2 
+      style={{ display: "flex", justifyContent: "space-between", alignItems: "end"}}
+      ><span>Reactive Center of Hydrolase Enzymes</span> <span style={{fontWeight: 100, fontSize: "0.8rem"}}>(Last Updated: Oct 31, 2024, created by{" "}
+        <a
+          href="https://chowdhurylab.github.io/"
+          target="_blank"
+          rel="noopener"
+        >
+          Chowdhury Lab (Iowa State)
+        </a>)</span></h2>
       <Select
         style={{
           width: "100%",

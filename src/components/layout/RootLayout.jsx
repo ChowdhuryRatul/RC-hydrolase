@@ -60,7 +60,7 @@ const RootLayout = () => {
         }}
       >
         {/* <Divider /> */}
-        RC-Hydrolase ©{new Date().getFullYear()} Developed by{" "}
+        RC-Hydrolase ©{new Date().getFullYear()} Created and developed by{" "}
         <a
           href="https://chowdhurylab.github.io/"
           target="_blank"
