@@ -10,7 +10,6 @@ import "./styles.css";
 import { pdbListItem } from "./utils";
 
 import { Empty } from "antd";
-import { useGlobalAppContext } from "../../app/AppProvider";
 import { useNavigate } from "react-router-dom";
 
 const ProteinContent = () => {
@@ -24,7 +23,7 @@ const ProteinContent = () => {
     sequence,
   } = useProteinContext();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -37,9 +36,12 @@ const ProteinContent = () => {
             fullscreen
           />
         </div>
-      ) : !pdbIdStructure ? (
-        <Flex style={{ height: "100%" }} justify="center" align="center">
+      ) : !sequence ? (
+        <Flex style={{ height: "100%" }} justify="center" align="center" vertical gap={12}>
           <Empty description={"No protein of pdb id found"} />
+          <Button type="primary" onClick={() => navigate("/")}>
+            Back Home
+          </Button>
         </Flex>
       ) : (
         <>
@@ -113,7 +115,17 @@ const ProteinContent = () => {
                     if (e === e.toUpperCase()) {
                       return <span key={key}>{e}</span>;
                     } else {
-                      return <span key={key} style={{backgroundColor: "Yellow", fontWeight: "bold"}}>{e.toUpperCase()}</span>;
+                      return (
+                        <span
+                          key={key}
+                          style={{
+                            backgroundColor: "yellow",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {e.toUpperCase()}
+                        </span>
+                      );
                     }
                   })}
               </>
@@ -130,8 +142,25 @@ const ProteinContent = () => {
               className={"protein-viewer"}
               pdbIdStructure={pdbIdStructure}
               style={{ width: "55%", aspectRatio: "1/1", flex: 3 }}
-              viewStyle={[{}, { cartoon: { color: "#F1BE48" } }]}
+              viewStyle={[{}, { cartoon: { color: "#C8102E" } }]}
               surfaceStyle={null}
+              partialViewStyle={
+                reactivePdb
+                  ? [
+                      {
+                        resi: [
+                          ...new Set(
+                            reactivePdb
+                              .split("\n")
+                              .map((e) => parseInt(e.slice(22, 26)))
+                              .filter((e) => !isNaN(e))
+                          ),
+                        ],
+                      },
+                      { cartoon: { color: "yellow" } },
+                    ]
+                  : null
+              }
             />
 
             <Flex
@@ -146,12 +175,12 @@ const ProteinContent = () => {
                 className={"protein-viewer"}
                 pdbIdStructure={reactivePdb}
                 style={{ width: "100%", aspectRatio: "1/1" }}
-                viewStyle={[{}, { stick: { radius: 0.2, color: "#C8102E" } }]}
+                viewStyle={[{}, { stick: { radius: 0.2, color: "#F1BE48" } }]}
                 surfaceStyle={[
                   ThreeDmol.SurfaceType.MS,
                   {
                     opacity: 1,
-                    color: "red",
+                    color: "#F1BE48",
                   },
                 ]}
               />

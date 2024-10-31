@@ -19,7 +19,6 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await wait(300);
       const rcData = await fetch("https://pixf-services.onrender.com/api/v1/rc-hydrolase/pairs")
       .then((res) => {
         if (res.status >= 300) {
