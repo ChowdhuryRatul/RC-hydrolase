@@ -9,7 +9,7 @@ const clusterContext = createContext(null);
 const ClusterProvider = ({ children, pdbId, clusterRange }) => {
   const { data, pdbs } = useGlobalAppContext();
 
-  const [clusterPdbs, setClusterPdbs] = useState([]);
+  const [clusterPdbs, setClusterPdbs] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate()

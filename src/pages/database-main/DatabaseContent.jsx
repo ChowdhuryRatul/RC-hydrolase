@@ -118,7 +118,7 @@ const DatabaseContent = () => {
               const name = e.replace(".pdb", "");
               const portion = name.split("_");
               return {
-                key: e,
+                pdbname: e,
                 pdbId: portion[0].toUpperCase(),
                 ligand: portion[1],
                 residuePosition: portion[2],

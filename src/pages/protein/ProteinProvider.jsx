@@ -12,8 +12,8 @@ const ProteinProvider = ({ children, pdbId }) => {
   const { pdbs } = useGlobalAppContext();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [pdbIdStructure, setPdbIdStructure] = useState("");
-  const [pdbIdInfo, setPdbIdInfo] = useState({});
+  const [pdbIdStructure, setPdbIdStructure] = useState(null);
+  const [pdbIdInfo, setPdbIdInfo] = useState(null);
   const [information, setInformation] = useState(null);
   const [reactivePdb, setReactivePdb] = useState(null);
   const [sequence, setSequence] = useState(null);
@@ -21,32 +21,6 @@ const ProteinProvider = ({ children, pdbId }) => {
   useEffect(() => {
     customMouseEvent(); // <-- remove 3dMol zoom functionality
     const fetchPdbId = async () => {
-      // get full protein pdb
-      const pdbData = await fetch(`https://files.rcsb.org/view/${pdbId}.pdb`)
-        .then((res) => {
-          if (res.status >= 300) {
-            return null;
-          }
-          return res.text();
-        })
-        .catch((err) => null);
-      setPdbIdStructure(pdbData);
-
-      // get pdb cif data (pdb information)
-      const pdbInfo = await fetch(
-        `https://pixf-services.onrender.com/api/v1/rc-hydrolase/cif/${pdbId}`
-      )
-        .then((res) => {
-          if (res.status >= 300) {
-            return null;
-          }
-          return res.json();
-        })
-        .catch((err) => null);
-
-      let pdbIdInfoObj = pdbInfo ? pdbInfo.data : null;
-      setPdbIdInfo(pdbIdInfoObj);
-
       // get information from RC-Hydrolase
       const name = getPdbFileByPdbId(pdbs, pdbId);
       if (name) {
@@ -57,37 +31,38 @@ const ProteinProvider = ({ children, pdbId }) => {
           organism: portion[4],
         });
 
-        const reactiveData = await fetch(
-          "https://pixf-services.onrender.com/api/v1/rc-hydrolase/pdbs/" +
-            name +
-            ".pdb"
-        )
-          .then((res) => {
-            if (res.status >= 300) {
-              return null;
-            }
-            return res.json();
-          })
-          .catch((err) => null);
-        setReactivePdb(reactiveData.data);
-
-        // get sequence
-        const sequenceData = await fetch(
-          "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
-            name +
-            ".pdb"
-        )
-          .then((res) => {
-            if (res.status >= 300) {
-              return null;
-            }
-            return res.json();
-          })
-          .catch((err) => null);
-        setSequence(sequenceData.data);
+        Promise.all([
+          fetch(`https://files.rcsb.org/view/${pdbId}.pdb`),
+          fetch(
+            `https://pixf-services.onrender.com/api/v1/rc-hydrolase/cif/${pdbId}`
+          ),
+          fetch(
+            "https://pixf-services.onrender.com/api/v1/rc-hydrolase/pdbs/" +
+              name +
+              ".pdb"
+          ),
+          fetch(
+            "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
+              name +
+              ".pdb"
+          ),
+        ]).then((values) => {
+          Promise.all([
+            values[0].text(),
+            values[1].json(),
+            values[2].json(),
+            values[3].json(),
+          ]).then((values) => {
+            setPdbIdStructure(values[0]);
+            setPdbIdInfo(values[1].data);
+            setReactivePdb(values[2].data);
+            setSequence(values[3].data);
+            setIsLoading(false);
+          });
+        });
+      } else {
+        setIsLoading(false);
       }
-
-      setIsLoading(false);
     };
     if (pdbs) {
       fetchPdbId();

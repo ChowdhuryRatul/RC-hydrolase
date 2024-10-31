@@ -25,7 +25,9 @@ const ClusterContent = () => {
           fullscreen
         />
       )}
-      <h2>Dataset of &#8805; {clusterRange}% with {pdbId}'s reactive center</h2>
+      <h2>
+        Dataset of &#8805; {clusterRange}% with {pdbId}'s reactive center
+      </h2>
       <Select
         style={{
           width: "100%",
@@ -46,7 +48,7 @@ const ClusterContent = () => {
         // onClick={() => {console.log("click")}}
 
         options={
-            clusterPdbs
+          clusterPdbs
             ? clusterPdbs.map((e) => ({
                 value: e.split("_")[0].toUpperCase(),
                 label: (
@@ -92,7 +94,7 @@ const ClusterContent = () => {
               const name = e.replace(".pdb", "");
               const portion = name.split("_");
               return {
-                key: e,
+                pdbname: e.split("_").slice(0,5).join("_"),
                 pdbId: portion[0].toUpperCase(),
                 ligand: portion[1],
                 residuePosition: portion[2],

@@ -3,7 +3,7 @@ export function getCluster(data, clusterRange, filename) {
   // target, match, score
   const temp = data.filter(
     (e) =>
-      e.score > clusterRange && (e.target === filename || e.match === filename) 
+      e.score >= clusterRange && (e.target === filename || e.match === filename) 
   );
 
   const temp2 = [
