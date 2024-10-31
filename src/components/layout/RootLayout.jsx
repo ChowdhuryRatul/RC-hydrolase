@@ -21,6 +21,7 @@ const RootLayout = () => {
         style={{
           display: "flex",
           alignItems: "center",
+          justifyContent: "space-between",
           padding: "0px 48px",
           boxShadow: " 0px 1px 2px rgb(0,0,0,0.5)",
         }}
@@ -33,10 +34,27 @@ const RootLayout = () => {
             align="center"
             className="topnav--brand"
           >
-            <Avatar shape="square" size={64}  src={RCHydrolaseLogo} />
+            <Avatar shape="square" size={64} src={RCHydrolaseLogo} />
             <div className="topnav--brand-text">RC-Hydrolase</div>
           </Flex>
         </Link>
+        <h2>Reactive Center of Hydrolase Enzymes</h2>
+        <Flex
+          style={{ fontWeight: 100, fontSize: "0.8rem", lineHeight: "20px" }}
+          vertical
+        >
+          <div>(Last Updated: Oct 31, 2024)</div>
+          <div>
+            created by
+            <a
+              href="https://chowdhurylab.github.io/"
+              target="_blank"
+              rel="noopener"
+            >
+              Chowdhury Lab (Iowa State)
+            </a>
+          </div>
+        </Flex>
       </Header>
       <Content
         style={{
