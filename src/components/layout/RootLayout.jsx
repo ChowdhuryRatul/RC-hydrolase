@@ -28,7 +28,7 @@ const RootLayout = () => {
       >
         <Link to={"/"}>
           <Flex
-            style={{ color: "black" }}
+            style={{ color: "black", width: "250px" }}
             gap={10}
             justify="center"
             align="center"
@@ -40,7 +40,7 @@ const RootLayout = () => {
         </Link>
         <h2>Reactive Center of Hydrolase Enzymes</h2>
         <Flex
-          style={{ fontWeight: 100, fontSize: "0.8rem", lineHeight: "20px" }}
+          style={{ fontWeight: 100, fontSize: "0.8rem", lineHeight: "20px", width: "250px" }}
           vertical
         >
           <div>(Last Updated: Oct 31, 2024)</div>
