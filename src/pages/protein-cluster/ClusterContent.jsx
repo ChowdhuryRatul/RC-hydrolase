@@ -25,9 +25,9 @@ const ClusterContent = () => {
           fullscreen
         />
       )}
-      <h2>
+      <h3>
         Dataset of &#8805; {clusterRange}% with {pdbId}'s reactive center
-      </h2>
+      </h3>
       <Select
         style={{
           width: "100%",

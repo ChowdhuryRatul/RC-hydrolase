@@ -48,7 +48,7 @@ const DatabaseContent = () => {
           fullscreen
         />
       )}
-      <h2>Full RC-Hydrolase Database</h2>
+      <h3>Full RC-Hydrolase Database</h3>
       <Select
         style={{
           width: "100%",
