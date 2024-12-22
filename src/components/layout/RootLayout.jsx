@@ -38,7 +38,7 @@ const RootLayout = () => {
             <div className="topnav--brand-text">RC-Hydrolase</div>
           </Flex>
         </Link>
-        <h2>Reactive Center of Hydrolase Enzymes</h2>
+        <h2>Reaction Core of Hydrolase Enzymes</h2>
         <Flex
           style={{ fontWeight: 100, fontSize: "0.8rem", lineHeight: "20px", width: "250px" }}
           vertical

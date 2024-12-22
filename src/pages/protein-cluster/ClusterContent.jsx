@@ -26,7 +26,7 @@ const ClusterContent = () => {
         />
       )}
       <h3>
-        Dataset of &#8805; {clusterRange}% with {pdbId}'s reactive center
+        Dataset of &#8805; {clusterRange}% with {pdbId}'s Reaction Core
       </h3>
       <Select
         style={{

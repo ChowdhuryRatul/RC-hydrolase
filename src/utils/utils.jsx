@@ -12,7 +12,7 @@ export function getPdbFileByPdbId(pdbs, pdbId) {
   });
 
   if (list.length > 1) {
-    console.error("Warning: found multiple reactive center with the same pdb.");
+    console.error("Warning: found multiple Reaction Core with the same pdb.");
   }
   if (list.length == 0) {
     return null;

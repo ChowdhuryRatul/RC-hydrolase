@@ -170,7 +170,7 @@ const ProteinContent = () => {
               align="center"
               gap={6}
             >
-              <h3>Reactive center</h3>
+              <h3>Reaction Core</h3>
               <Protein3DMol
                 className={"protein-viewer"}
                 pdbIdStructure={reactivePdb}
