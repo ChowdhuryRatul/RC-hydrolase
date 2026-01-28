@@ -34,17 +34,18 @@ const ProteinProvider = ({ children, pdbId }) => {
         Promise.all([
           fetch(`https://files.rcsb.org/view/${pdbId}.pdb`),
           fetch(
-            `https://pixf-services.onrender.com/api/v1/rc-hydrolase/cif/${pdbId}`
+            // `https://pixf-services.onrender.com/api/v1/rc-hydrolase/cif/${pdbId}`
+            `https://agrivax.studio/api/v1/rc-hydrolase/cif/${pdbId}`,
           ),
           fetch(
-            "https://pixf-services.onrender.com/api/v1/rc-hydrolase/pdbs/" +
-              name +
-              ".pdb"
+            // "https://pixf-services.onrender.com/api/v1/rc-hydrolase/pdbs/" +
+            "https://agrivax.studio/api/v1/rc-hydrolase/pdbs/" + name + ".pdb",
           ),
           fetch(
-            "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
+            // "https://pixf-services.onrender.com/api/v1/rc-hydrolase/sequence/" +
+            "https://agrivax.studio/api/v1/rc-hydrolase/sequence/" +
               name +
-              ".pdb"
+              ".pdb",
           ),
         ]).then((values) => {
           Promise.all([

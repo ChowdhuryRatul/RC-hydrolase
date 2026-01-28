@@ -1,13 +1,14 @@
 export async function fetchDownloadData(data) {
   await fetch(
-    "https://pixf-services.onrender.com/api/v1/rc-hydrolase/download",
+    // "https://pixf-services.onrender.com/api/v1/rc-hydrolase/download",
+    "https://agrivax.studio.com/api/v1/rc-hydrolase/download",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
+    },
   )
     .then((response) => response.blob())
     .then((blob) => {
