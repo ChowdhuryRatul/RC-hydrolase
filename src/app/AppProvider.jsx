@@ -12,21 +12,23 @@ const wait = (delay) => {
   });
 };
 const AppProvider = ({ children }) => {
-
   const [data, setData] = useState(null);
   const [pdbs, setPdbs] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const rcData = await fetch("https://pixf-services.onrender.com/api/v1/rc-hydrolase/pairs")
-      .then((res) => {
-        if (res.status >= 300) {
-          return null;
-        }
-        return res.json();
-      })
-      .catch((err) => null);
+      // const rcData = await fetch("https://pixf-services.onrender.com/api/v1/rc-hydrolase/pairs")
+      const rcData = await fetch(
+        "https://agrivax.studio/api/v1/rc-hydrolase/pairs",
+      )
+        .then((res) => {
+          if (res.status >= 300) {
+            return null;
+          }
+          return res.json();
+        })
+        .catch((err) => null);
 
       setData(rcData.data);
       setPdbs(getPdbs(rcData.data));
@@ -37,7 +39,7 @@ const AppProvider = ({ children }) => {
   }, []);
 
   const value = { data, pdbs, isLoading };
-  
+
   return (
     <globalAppContext.Provider value={value}>
       {children}
